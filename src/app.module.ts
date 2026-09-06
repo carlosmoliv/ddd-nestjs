@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { createObserveModule } from '@nestjs/observe';
-import { DrizzleModule } from './shared/infrastructure/database/postgres/drizzle.module.js';
-import { MongoModule } from './shared/infrastructure/database/mongodb/mongo.module.js';
+import { DrizzleModule } from './shared/infra/database/postgres/drizzle.module.js';
+import { MongoModule } from './shared/infra/database/mongo/mongo.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
