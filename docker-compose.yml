@@ -6,5 +6,18 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: clean-shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
 volumes:
   mongodb_data:
+  postgres_data:

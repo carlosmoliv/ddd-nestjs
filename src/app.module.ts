@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { createObserveModule } from '@nestjs/observe';
-import { MongoModule } from './shared/infrastructure/infrestructure/database/mongodb/mongo.module.js';
+import { DrizzleModule } from './shared/infrastructure/database/postgres/drizzle.module.js';
+import { MongoModule } from './shared/infrastructure/database/mongodb/mongo.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -14,6 +15,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     MongoModule,
+    DrizzleModule,
   ],
   controllers: [],
   providers: [],
