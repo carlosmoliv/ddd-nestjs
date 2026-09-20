@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { createObserveModule } from '@nestjs/observe';
 import { DrizzleModule } from './shared/infra/database/postgres/drizzle.module.js';
 import { MongoModule } from './shared/infra/database/mongo/mongo.module.js';
+import { CqrsModule } from '@nestjs/cqrs';
+import { ProductModule } from './product/product.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -16,6 +18,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ConfigModule.forRoot({ isGlobal: true }),
     MongoModule,
     DrizzleModule,
+    CqrsModule.forRoot(),
+    ProductModule,
   ],
   controllers: [],
   providers: [],
