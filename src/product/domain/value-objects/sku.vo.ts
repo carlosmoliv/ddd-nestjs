@@ -1,7 +1,7 @@
 export class Sku {
   private static readonly SKU_PATTERN = /^[A-Za-z0-9-]+$/;
   private static readonly MIN_LENGTH = 3;
-  private static readonly MAX_LENGTH = 3;
+  private static readonly MAX_LENGTH = 50;
 
   private readonly value: string;
 
