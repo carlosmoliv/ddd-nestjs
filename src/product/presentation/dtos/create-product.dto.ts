@@ -20,7 +20,7 @@ export class CreateProductDto {
   @IsString()
   @MinLength(3)
   @MaxLength(50)
-  @Matches(/^[A-Za-z0-9-]+s/, {
+  @Matches(/^[A-Za-z0-9-]+$/, {
     message: 'SKU must contain only alphanumeric characters and dashes',
   })
   sku: string;
