@@ -1,18 +1,22 @@
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   ProductFilters,
   ProductRepository,
 } from '../../application/ports/product.repository.js';
 import { Product } from '../../domain/entities/product.entity.js';
-import type { DrizzleDB } from '../../../shared/infra/database/postgres/drizzle.provider.js';
+import {
+  DRIZZLE_CLIENT,
+  type DrizzleDB,
+} from '../../../shared/infra/database/postgres/drizzle.provider.js';
 import { products } from '../../../shared/infra/database/postgres/schema/product.schema.js';
 import { ProductId } from '../../domain/value-objects/product-id.vo.js';
 import { Sku } from '../../domain/value-objects/sku.vo.js';
 import { Money } from '../../../shared/domain/value-objects/money.vo.js';
 import { and, eq, gte, SQL } from 'drizzle-orm';
 
+@Injectable()
 export class DrizzleProductRepository implements ProductRepository {
-  constructor(@Inject('DRIZZLE_CLIENT') private readonly db: DrizzleDB) {}
+  constructor(@Inject(DRIZZLE_CLIENT) private readonly db: DrizzleDB) {}
 
   async save(product: Product): Promise<void> {
     const rawData = DrizzleProductRepository.toPersistence(product);
