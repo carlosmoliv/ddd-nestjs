@@ -5,12 +5,14 @@ import { PRODUCT_REPOSITORY } from './application/ports/product.repository.js';
 import { DrizzleProductRepository } from './infra/adapters/drizzle-product.repository.js';
 import { CommandHandlers } from './application/index.js';
 import { DrizzleModule } from '../shared/infra/database/postgres/drizzle.module.js';
+import { QueryHandlers } from './application/queries/handlers/index.js';
 
 @Module({
   imports: [CqrsModule, DrizzleModule],
   controllers: [ProductController],
   providers: [
     ...CommandHandlers,
+    ...QueryHandlers,
     {
       provide: PRODUCT_REPOSITORY,
       useClass: DrizzleProductRepository,
