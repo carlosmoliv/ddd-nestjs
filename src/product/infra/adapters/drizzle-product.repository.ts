@@ -132,4 +132,8 @@ export class DrizzleProductRepository implements ProductRepository {
       updatedAt: raw.updatedAt,
     });
   }
+
+  async delete(productId: ProductId): Promise<void> {
+    await this.db.delete(products).where(eq(products.id, productId.getValue()));
+  }
 }
