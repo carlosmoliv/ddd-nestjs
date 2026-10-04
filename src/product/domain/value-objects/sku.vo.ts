@@ -1,3 +1,5 @@
+import { DomainException } from '../../../shared/domain/exceptions/domain.exception.js';
+
 export class Sku {
   private static readonly SKU_PATTERN = /^[A-Za-z0-9-]+$/;
   private static readonly MIN_LENGTH = 3;
@@ -17,12 +19,12 @@ export class Sku {
 
   private static assertValid(value: string): void {
     if (value.length < Sku.MIN_LENGTH || value.length > Sku.MAX_LENGTH) {
-      throw new Error(
+      throw new DomainException(
         `SKU must be between ${Sku.MIN_LENGTH} and ${Sku.MAX_LENGTH} characters long.`,
       );
     }
     if (!Sku.SKU_PATTERN.test(value)) {
-      throw new Error(
+      throw new DomainException(
         'SKU can only contain alphanumeric characters and hyphens.',
       );
     }
