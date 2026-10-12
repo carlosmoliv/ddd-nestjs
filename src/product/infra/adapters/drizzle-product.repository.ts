@@ -102,6 +102,10 @@ export class DrizzleProductRepository implements ProductRepository {
     return DrizzleProductRepository.toDomain(rows[0]);
   }
 
+  async delete(productId: ProductId): Promise<void> {
+    await this.db.delete(products).where(eq(products.id, productId.getValue()));
+  }
+
   private static toPersistence(product: Product): typeof products.$inferSelect {
     return {
       id: product.id.getValue(),
@@ -131,9 +135,5 @@ export class DrizzleProductRepository implements ProductRepository {
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt,
     });
-  }
-
-  async delete(productId: ProductId): Promise<void> {
-    await this.db.delete(products).where(eq(products.id, productId.getValue()));
   }
 }
