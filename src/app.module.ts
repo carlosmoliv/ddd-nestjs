@@ -5,6 +5,7 @@ import { DrizzleModule } from './shared/infra/database/postgres/drizzle.module.j
 import { MongoModule } from './shared/infra/database/mongo/mongo.module.js';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ProductModule } from './product/product.module.js';
+import { CustomerModule } from './customer/customer.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -20,6 +21,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     DrizzleModule,
     CqrsModule.forRoot(),
     ProductModule,
+    CustomerModule,
   ],
   controllers: [],
   providers: [],
