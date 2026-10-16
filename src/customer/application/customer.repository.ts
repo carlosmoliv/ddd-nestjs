@@ -9,5 +9,5 @@ export interface CustomerRepository {
   findById(id: CustomerId): Promise<Customer | null>;
   findByEmail(email: Email): Promise<Customer | null>;
   findAll(): Promise<Customer[]>;
-  delete(customer: Customer): Promise<void>;
+  delete(customerId: CustomerId): Promise<void>;
 }

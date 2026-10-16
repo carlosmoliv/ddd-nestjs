@@ -57,10 +57,10 @@ export class DrizzleCustomerRepository implements CustomerRepository {
     return rows.map(DrizzleCustomerRepository.toDomain);
   }
 
-  async delete(customer: Customer): Promise<void> {
+  async delete(customerId: CustomerId): Promise<void> {
     await this.db
       .delete(customers)
-      .where(eq(customers.id, customer.id.getValue()));
+      .where(eq(customers.id, customerId.getValue()));
   }
 
   private static toPersistence(customer: Customer): CustomerPersistence {
