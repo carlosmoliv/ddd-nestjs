@@ -3,10 +3,12 @@ import { DrizzleCustomerRepository } from './infra/drizzle-customer.repository.j
 import { CUSTOMER_REPOSITORY } from './application/customer.repository.js';
 import { CommandHandlers } from './application/use-cases/index.js';
 import { CustomerController } from './presentation/customer.controller.js';
+import { QueryHandlers } from './application/queries/handlers/index.js';
 
 @Module({
   providers: [
     ...CommandHandlers,
+    ...QueryHandlers,
     {
       provide: CUSTOMER_REPOSITORY,
       useClass: DrizzleCustomerRepository,
