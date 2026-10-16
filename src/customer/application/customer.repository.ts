@@ -2,7 +2,7 @@ import { Customer } from '../domain/entities/customer.entity.js';
 import { CustomerId } from '../domain/value-objects/customer-id.vo.js';
 import { Email } from '../domain/value-objects/email.vo.js';
 
-export const CUSTOMER_REPOSITORY = Symbol('CustomerRepository');
+export const CUSTOMER_REPOSITORY = Symbol('CUSTOMER_REPOSITORY');
 
 export interface CustomerRepository {
   save(customer: Customer): Promise<void>;
