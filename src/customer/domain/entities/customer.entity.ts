@@ -1,6 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Email } from '../value-objects/email.vo.js';
 import { CustomerId } from '../value-objects/customer-id.vo.js';
+import { CustomerRegisteredEvent } from '../events/customer-registered.event.js';
 
 interface CustomerProps {
   id: CustomerId;
@@ -53,7 +54,11 @@ export class Customer extends AggregateRoot {
       createdAt: now,
       updatedAt: now,
     };
-    return new Customer(props);
+    const customer = new Customer(props);
+    customer.apply(
+      new CustomerRegisteredEvent(id.getValue(), email.getValue(), firstName),
+    );
+    return customer;
   }
 
   static reconstitute(props: CustomerProps): Customer {
