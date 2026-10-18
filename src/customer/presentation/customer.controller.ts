@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CustomerResponseDto, RegisterCustomerDto } from './dto/index.js';
-import { RegisterCustomerCommand } from '../application/use-cases/register-product/register-customer.command.js';
+import { RegisterCustomerCommand } from '../application/use-cases/register-customer/register-customer.command.js';
 import { ListCustomersQuery } from '../application/queries/list-customers.query.js';
 import { Customer } from '../domain/entities/customer.entity.js';
 import { GetCustomerQuery } from '../application/queries/get-customer.query.js';
-import { DeleteCustomerCommand } from '../application/use-cases/delete-product/delete-customer.command.js';
+import { DeleteCustomerCommand } from '../application/use-cases/delete-customer/delete-customer.command.js';
 
 @Controller('customers')
 export class CustomerController {
