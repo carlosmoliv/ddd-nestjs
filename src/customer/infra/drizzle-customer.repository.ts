@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CustomerRepository } from '../application/customer.repository.js';
+import { CustomerRepository } from '../application/ports/customer.repository.js';
 import { Customer } from '../domain/entities/customer.entity.js';
 import { CustomerId } from '../domain/value-objects/customer-id.vo.js';
 import { Email } from '../domain/value-objects/email.vo.js';

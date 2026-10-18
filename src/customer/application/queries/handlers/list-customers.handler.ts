@@ -2,7 +2,7 @@ import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
-} from '../../customer.repository.js';
+} from '../../ports/customer.repository.js';
 import { Inject } from '@nestjs/common';
 import { ListCustomersQuery } from '../list-customers.query.js';
 import { Customer } from '../../../domain/entities/customer.entity.js';

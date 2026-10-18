@@ -3,7 +3,7 @@ import { RegisterCustomerCommand } from './register-customer.command.js';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
-} from '../../customer.repository.js';
+} from '../../ports/customer.repository.js';
 import { Inject } from '@nestjs/common';
 import { Email } from '../../../domain/value-objects/email.vo.js';
 import { Customer } from '../../../domain/entities/customer.entity.js';

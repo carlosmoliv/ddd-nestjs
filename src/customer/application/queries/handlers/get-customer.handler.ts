@@ -9,7 +9,7 @@ import { Customer } from '../../../domain/entities/customer.entity.js';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
-} from '../../customer.repository.js';
+} from '../../ports/customer.repository.js';
 import { CustomerId } from '../../../domain/value-objects/customer-id.vo.js';
 
 @QueryHandler(GetCustomerQuery)
