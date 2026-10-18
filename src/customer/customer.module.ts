@@ -6,11 +6,13 @@ import { CustomerController } from './presentation/customer.controller.js';
 import { QueryHandlers } from './application/queries/handlers/index.js';
 import { ConsoleNotificationAdapter } from './infra/console-notification.adapter.js';
 import { NOTIFICATION_SERVICE } from './application/ports/notification.port.js';
+import { EventHandlers } from './application/events/index.js';
 
 @Module({
   providers: [
     ...CommandHandlers,
     ...QueryHandlers,
+    ...EventHandlers,
     {
       provide: CUSTOMER_REPOSITORY,
       useClass: DrizzleCustomerRepository,
