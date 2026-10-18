@@ -23,7 +23,7 @@ export class Customer extends AggregateRoot {
   private readonly _createdAt: Date;
   private _updatedAt: Date;
 
-  private constructor(private readonly props: CustomerProps) {
+  private constructor(props: CustomerProps) {
     super();
     this._id = props.id;
     this._firstName = props.firstName;
