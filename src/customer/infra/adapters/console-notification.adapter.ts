@@ -2,12 +2,12 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import {
   NotificationPort,
   Notification,
-} from '../application/ports/notification.port.js';
+} from '../../application/ports/notification.port.js';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
-} from '../application/ports/customer.repository.js';
-import { CustomerId } from '../domain/value-objects/customer-id.vo.js';
+} from '../../application/ports/customer.repository.js';
+import { CustomerId } from '../../domain/value-objects/customer-id.vo.js';
 
 @Injectable()
 export class ConsoleNotificationAdapter implements NotificationPort {

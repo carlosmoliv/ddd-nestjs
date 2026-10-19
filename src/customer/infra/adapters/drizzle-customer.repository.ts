@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CustomerRepository } from '../application/ports/customer.repository.js';
-import { Customer } from '../domain/entities/customer.entity.js';
-import { CustomerId } from '../domain/value-objects/customer-id.vo.js';
-import { Email } from '../domain/value-objects/email.vo.js';
+import { CustomerRepository } from '../../application/ports/customer.repository.js';
+import { Customer } from '../../domain/entities/customer.entity.js';
+import { CustomerId } from '../../domain/value-objects/customer-id.vo.js';
+import { Email } from '../../domain/value-objects/email.vo.js';
 import {
   DRIZZLE_CLIENT,
   DrizzleDB,
-} from '../../shared/infra/database/postgres/drizzle.provider.js';
-import { customers } from '../../shared/infra/database/postgres/schema/index.js';
+} from '../../../shared/infra/database/postgres/drizzle.provider.js';
+import { customers } from '../../../shared/infra/database/postgres/schema/index.js';
 import { eq } from 'drizzle-orm';
 
 type CustomerPersistence = typeof customers.$inferSelect;
