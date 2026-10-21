@@ -16,6 +16,14 @@ export class Money {
     return new Money(normalizedValue, normalizedCurrency);
   }
 
+  multiply(factor: number): Money {
+    if (factor < 0) {
+      throw new DomainException('Multiplication factor cannot be negative');
+    }
+    const multipliedAmount = this.amount * factor;
+    return Money.create(multipliedAmount, this.currency);
+  }
+
   getAmount(): number {
     return this.amount;
   }
