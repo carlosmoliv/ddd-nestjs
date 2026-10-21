@@ -58,6 +58,26 @@ export class OrderItem extends Entity {
     this._quantity = quantity;
   }
 
+  applyDiscount(discount: Money): void {
+    const lineTotal = this._unitPrice.multiply(this._quantity);
+    if (discount.isGreaterThan(lineTotal)) {
+      throw new DomainException('Discount cannot exceed item subtotal');
+    }
+    this._discount = discount;
+  }
+
+  removeDiscount(): void {
+    this._discount = null;
+  }
+
+  getSubtotal(): Money {
+    const lineTotal = this._unitPrice.multiply(this._quantity);
+    if (this._discount) {
+      return lineTotal.subtract(this._discount);
+    }
+    return lineTotal;
+  }
+
   get productId(): string {
     return this._productId;
   }
