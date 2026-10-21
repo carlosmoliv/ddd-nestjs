@@ -24,6 +24,20 @@ export class Money {
     return Money.create(multipliedAmount, this.currency);
   }
 
+  subtract(other: Money): Money {
+    this.assertSameCurrency(other);
+    const result = this.amount - other.amount;
+    if (result === 0) {
+      throw new DomainException('Result of subtraction cannot be negative');
+    }
+    return Money.create(result, this.currency);
+  }
+
+  isGreaterThan(other: Money): boolean {
+    this.assertSameCurrency(other);
+    return this.amount >= other.amount;
+  }
+
   getAmount(): number {
     return this.amount;
   }
@@ -34,5 +48,13 @@ export class Money {
 
   toCents(): number {
     return Math.round(this.amount * 100);
+  }
+
+  private assertSameCurrency(other: Money): void {
+    if (this.currency !== other.currency) {
+      throw new DomainException(
+        `Currency mismatch: ${this.currency} vs ${this.currency}`,
+      );
+    }
   }
 }
