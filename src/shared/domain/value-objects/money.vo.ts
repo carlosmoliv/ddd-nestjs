@@ -16,6 +16,10 @@ export class Money {
     return new Money(normalizedValue, normalizedCurrency);
   }
 
+  static zero(currency: string = 'USD') {
+    return new Money(0, currency.toUpperCase());
+  }
+
   multiply(factor: number): Money {
     if (factor < 0) {
       throw new DomainException('Multiplication factor cannot be negative');
