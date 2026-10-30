@@ -33,7 +33,7 @@ export const orders = pgTable('orders', {
   shippingState: varchar('shipping_state'),
   shippingZipCode: varchar('shipping_zip_code'),
   shippingCountry: varchar('shipping_country'),
-  trackingNUmber: varchar('tracking_number'),
+  trackingNumber: varchar('tracking_number'),
   notes: text('notes'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
