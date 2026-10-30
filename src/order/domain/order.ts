@@ -12,7 +12,7 @@ interface OrderProps {
   status: OrderStatus;
   items: OrderItem[];
   shippingAddress: ShippingAddress;
-  trackingNumber: number | null;
+  trackingNumber: string | null;
   notes: string | null;
   createdAt: Date;
   updatedAt: Date;
@@ -24,7 +24,7 @@ export class Order extends AggregateRoot {
   private _status: OrderStatus;
   private _items: OrderItem[];
   private readonly _shippingAddress: ShippingAddress;
-  private _trackingNumber: number | null;
+  private _trackingNumber: string | null;
   private _notes: string | null;
   private readonly _createdAt: Date;
   private _updatedAt: Date;
@@ -84,5 +84,41 @@ export class Order extends AggregateRoot {
       (sum, item) => sum.add(item.getSubtotal()),
       Money.zero(this._items[0].unitPrice.getCurrency()),
     );
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  get customerId() {
+    return this._customerId;
+  }
+
+  get items() {
+    return this._items;
+  }
+
+  get status() {
+    return this._status;
+  }
+
+  get shippingAddress() {
+    return this._shippingAddress;
+  }
+
+  get trackingNumber() {
+    return this._trackingNumber;
+  }
+
+  get notes() {
+    return this._notes;
+  }
+
+  get createdAt() {
+    return this._createdAt;
+  }
+
+  get updatedAt() {
+    return this._updatedAt;
   }
 }
