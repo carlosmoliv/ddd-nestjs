@@ -9,6 +9,7 @@ import {
 } from 'drizzle-orm/pg-core';
 import { customers } from './customer.schema.js';
 import { products } from './product.schema.js';
+import { relations } from 'drizzle-orm';
 
 export const orderStatusEnum = pgEnum('order_status', [
   'pending',
@@ -57,3 +58,14 @@ export const orderItems = pgTable('orders', {
   discountCurrency: varchar('discount_currency', { length: 3 }),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
+
+export const orderRelations = relations(orders, ({ many }) => ({
+  items: many(orderItems),
+}));
+
+export const orderItemsRelations = relations(orderItems, ({ one }) => ({
+  order: one(orders, {
+    fields: [orderItems.orderId],
+    references: [orders.id],
+  }),
+}));
