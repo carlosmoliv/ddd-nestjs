@@ -17,10 +17,10 @@ export class ShippingAddress {
 
   private constructor(props: ShippingAddressProps) {
     this._street = props.street;
-    this._city = props.street;
-    this._state = props.street;
-    this._zipCode = props.street;
-    this._country = props.street;
+    this._city = props.city;
+    this._state = props.state;
+    this._zipCode = props.zipCode;
+    this._country = props.country;
   }
 
   static create(props: ShippingAddressProps): ShippingAddress {
@@ -39,15 +39,17 @@ export class ShippingAddress {
     }
 
     if (!state) {
-      throw new DomainException('Shipping address city is required.');
+      throw new DomainException('Shipping address state is required.');
     }
 
     if (!zipCode) {
-      throw new DomainException('Shipping address city is required.');
+      throw new DomainException('Shipping address ZIP code is required.');
     }
 
     if (country.length !== 2) {
-      throw new DomainException('Shipping address city is required.');
+      throw new DomainException(
+        'Shipping address country must be a 2-letter code.',
+      );
     }
 
     return new ShippingAddress({
