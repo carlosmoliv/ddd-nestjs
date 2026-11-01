@@ -1,5 +1,5 @@
+import { Order } from '../../domain/order.js';
 import { OrderId } from '../../value-objects/order-id.vo.js';
-import { Order } from '../order.js';
 
 export const ORDER_REPOSITORY = Symbol('ORDER_REPOSITORY');
 

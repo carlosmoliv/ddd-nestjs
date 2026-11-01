@@ -24,5 +24,6 @@ import { NodeMailerNotificationAdapter } from './infra/adapters/node-mailer-noti
     },
   ],
   controllers: [CustomerController],
+  exports: [CUSTOMER_REPOSITORY],
 })
 export class CustomerModule {}

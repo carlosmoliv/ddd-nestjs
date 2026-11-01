@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { OrderRepositoryPort } from '../../ports/order.repository.js';
 import {
   DRIZZLE_CLIENT,
   DrizzleDB,
@@ -16,6 +15,7 @@ import { ShippingAddress } from '../../../value-objects/shipping-address.vo.js';
 import { OrderId } from '../../../value-objects/order-id.vo.js';
 import { OrderStatus } from '../../../value-objects/order-status.vo.js';
 import { and, eq, notInArray } from 'drizzle-orm';
+import { OrderRepositoryPort } from '../../../application/ports/order.repository.js';
 
 @Injectable()
 export class DrizzleOrderRepository implements OrderRepositoryPort {
