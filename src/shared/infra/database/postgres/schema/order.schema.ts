@@ -40,7 +40,7 @@ export const orders = pgTable('orders', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-export const orderItems = pgTable('orders', {
+export const orderItems = pgTable('order_items', {
   id: uuid('id').primaryKey(),
   orderId: uuid('order_id')
     .notNull()
