@@ -99,7 +99,6 @@ export class DrizzleOrderRepository implements OrderRepositoryPort {
       where: eq(orders.customerId, customerId),
       with: { items: true },
     });
-
     return results.map((r) => DrizzleOrderRepository.toDomain(r, r.items));
   }
 
@@ -107,7 +106,6 @@ export class DrizzleOrderRepository implements OrderRepositoryPort {
     const results = await this.db.query.orders.findMany({
       with: { items: true },
     });
-
     return results.map((r) => DrizzleOrderRepository.toDomain(r, r.items));
   }
 
