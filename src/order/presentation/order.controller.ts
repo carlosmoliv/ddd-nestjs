@@ -1,12 +1,25 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { CommandBus } from '@nestjs/cqrs';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { PlaceOrderDto } from './dto/place-order.dto.js';
 import { PlaceOrderCommand } from '../application/use-cases/place-order/place-order.command.js';
+import { OrderResponseDto } from './dto/order-response.dto.js';
+import { ListOrdersQuery } from '../queries/list-orders.query.js';
+import { Order } from '../domain/order.js';
+import { GetOrderQuery } from '../queries/get-order.query.js';
 
 @Controller('orders')
 export class OrderController {
   constructor(
     private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
   ) {}
 
   @Post()
@@ -28,5 +41,26 @@ export class OrderController {
         dto.shippingCountry,
       ),
     );
+  }
+
+  @Get()
+  async findAll(
+    @Query('customerId') customerId?: string,
+  ): Promise<OrderResponseDto[]> {
+    const orders = await this.queryBus.execute<ListOrdersQuery, Order[]>(
+      new ListOrdersQuery(customerId),
+    );
+
+    return orders.map(OrderResponseDto.fromDomain);
+  }
+
+  @Get(':id')
+  async findOne(
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<OrderResponseDto> {
+    const order = await this.queryBus.execute<GetOrderQuery, Order>(
+      new GetOrderQuery(id),
+    );
+    return OrderResponseDto.fromDomain(order);
   }
 }
