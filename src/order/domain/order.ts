@@ -4,6 +4,7 @@ import { Money } from '../../shared/domain/value-objects/money.vo.js';
 import { OrderId } from '../value-objects/order-id.vo.js';
 import { OrderStatus } from '../value-objects/order-status.vo.js';
 import { ShippingAddress } from '../value-objects/shipping-address.vo.js';
+import { OrderPlacedEvent } from './events/order-placed.event.js';
 import { OrderItem } from './order-item.js';
 
 interface OrderProps {
@@ -64,6 +65,8 @@ export class Order extends AggregateRoot {
       createdAt: now,
       updatedAt: now,
     });
+
+    order.apply(new OrderPlacedEvent(id.getValue(), customerId));
 
     return order;
   }
