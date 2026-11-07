@@ -5,6 +5,7 @@ import { OrderId } from '../value-objects/order-id.vo.js';
 import { OrderStatus } from '../value-objects/order-status.vo.js';
 import { ShippingAddress } from '../value-objects/shipping-address.vo.js';
 import { OrderPlacedEvent } from './events/order-placed.event.js';
+import { OrderConfirmedEvent } from './events/order-confirmed.event.js';
 import { OrderItem } from './order-item.js';
 
 interface OrderProps {
@@ -90,6 +91,20 @@ export class Order extends AggregateRoot {
     return this._items.reduce(
       (sum, item) => sum.add(item.getSubtotal()),
       Money.zero(this._items[0].unitPrice.getCurrency()),
+    );
+  }
+
+  confirm(): void {
+    this._status = this._status.confirm();
+    this._updatedAt = new Date();
+    this.apply(
+      new OrderConfirmedEvent(this.id.getValue(), this.customerId, {
+        street: this.shippingAddress.street,
+        city: this.shippingAddress.city,
+        state: this.shippingAddress.state,
+        zipCode: this.shippingAddress.zipCode,
+        country: this.shippingAddress.country,
+      }),
     );
   }
 
