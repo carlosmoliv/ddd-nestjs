@@ -16,6 +16,10 @@ import { ListOrdersQuery } from '../queries/list-orders.query.js';
 import { Order } from '../domain/order.js';
 import { GetOrderQuery } from '../queries/get-order.query.js';
 import { ConfirmOrderCommand } from '../application/use-cases/confirm-order/confirm-order.command.js';
+import { ShipOrderCommand } from '../application/use-cases/ship-order/ship-order.command.js';
+import { ShipOrderDto } from './dto/ship-order.dto.js';
+import { DeliverOrderCommand } from '../application/use-cases/deliver-order/deliver-order.command.js';
+import { CancelOrderCommand } from '../application/use-cases/cancel-order/cancel-order.command.js';
 
 @Controller('orders')
 export class OrderController {
@@ -70,6 +74,33 @@ export class OrderController {
   async confirm(@Param('id', new ParseUUIDPipe()) id: string): Promise<void> {
     await this.commandBus.execute<ConfirmOrderCommand, void>(
       new ConfirmOrderCommand(id),
+    );
+  }
+
+  @Patch(':id/ship')
+  async ship(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() dto: ShipOrderDto,
+  ) {
+    await this.commandBus.execute<ShipOrderCommand, void>(
+      new ShipOrderCommand(id, dto.trackingNumber),
+    );
+  }
+
+  @Patch(':id/deliver')
+  async deliver(@Param('id', new ParseUUIDPipe()) id: string) {
+    await this.commandBus.execute<DeliverOrderCommand, void>(
+      new DeliverOrderCommand(id),
+    );
+  }
+
+  @Patch(':id/cancel')
+  async cancel(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body('reason') reason: string,
+  ) {
+    await this.commandBus.execute<CancelOrderCommand, void>(
+      new CancelOrderCommand(id, reason),
     );
   }
 }

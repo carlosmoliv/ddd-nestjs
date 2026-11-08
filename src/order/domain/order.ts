@@ -7,6 +7,7 @@ import { ShippingAddress } from '../value-objects/shipping-address.vo.js';
 import { OrderPlacedEvent } from './events/order-placed.event.js';
 import { OrderConfirmedEvent } from './events/order-confirmed.event.js';
 import { OrderItem } from './order-item.js';
+import { OrderShippedEvent } from './events/order-shipped.event.js';
 
 interface OrderProps {
   id: OrderId;
@@ -105,6 +106,26 @@ export class Order extends AggregateRoot {
         zipCode: this.shippingAddress.zipCode,
         country: this.shippingAddress.country,
       }),
+    );
+  }
+
+  ship(trackingNumber: string): void {
+    const trimmedTrackingNumber = trackingNumber.trim();
+
+    if (!trackingNumber || trimmedTrackingNumber.length === 0) {
+      throw new DomainException('Tracking number is required for shipping.');
+    }
+
+    this._status = this._status.ship();
+    this._trackingNumber = trimmedTrackingNumber;
+    this._updatedAt = new Date();
+
+    this.apply(
+      new OrderShippedEvent(
+        this.id.getValue(),
+        this._trackingNumber,
+        this.customerId,
+      ),
     );
   }
 
