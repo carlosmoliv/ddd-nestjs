@@ -35,8 +35,10 @@ export class DeliverOrderHandler implements ICommandHandler<
     }
 
     const tracked = this.eventPublisher.mergeObjectContext(order);
-    // tracked.deliver();
+    tracked.deliver();
+
     await this.orderRepository.save(tracked);
+
     tracked.commit();
   }
 }
