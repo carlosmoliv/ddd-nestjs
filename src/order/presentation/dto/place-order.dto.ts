@@ -37,6 +37,11 @@ export class PlaceOrderItemDto {
   @Min(1)
   @Max(100)
   quantity: number;
+
+  @IsNumber()
+  @Min(0)
+  @IsOptional()
+  discount?: number;
 }
 
 export class PlaceOrderDto {
