@@ -36,7 +36,7 @@ export class CancelOrderHandler implements ICommandHandler<
 
     const trackedOrder = this.eventPublisher.mergeObjectContext(order);
 
-    // trackedOrder.cancel(command.reason);
+    trackedOrder.cancel(command.reason);
 
     await this.orderRepository.save(trackedOrder);
 
