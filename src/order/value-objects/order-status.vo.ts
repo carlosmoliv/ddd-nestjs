@@ -10,7 +10,7 @@ export class OrderStatus {
   > = {
     pending: ['confirmed', 'cancelled'],
     confirmed: ['shipped', 'cancelled'],
-    shipped: ['shipped'],
+    shipped: ['delivered'],
     delivered: [],
     cancelled: [],
   };
