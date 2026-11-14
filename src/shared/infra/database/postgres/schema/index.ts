@@ -7,3 +7,4 @@ export {
   orderRelations,
   orderItemsRelations,
 } from './order.schema.js';
+export { payments, paymentStatusEnum } from './payments.schema.js';
