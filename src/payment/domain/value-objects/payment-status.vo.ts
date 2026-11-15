@@ -1,9 +1,9 @@
-import { DomainException } from '../../shared/domain/exceptions/domain.exception.js';
+import { DomainException } from '../../../shared/domain/exceptions/domain.exception.js';
 
 export enum PaymentStatusValue {
   Pending = 'pending',
   Processing = 'processing',
-  Completed = 'completed',
+  Succeeded = 'succeeded',
 }
 
 export class PaymentStatus {
@@ -21,8 +21,8 @@ export class PaymentStatus {
     return new PaymentStatus(PaymentStatusValue.Processing);
   }
 
-  static completed(): PaymentStatus {
-    return new PaymentStatus(PaymentStatusValue.Completed);
+  static succeeded(): PaymentStatus {
+    return new PaymentStatus(PaymentStatusValue.Succeeded);
   }
 
   static fromString(value: string): PaymentStatus {

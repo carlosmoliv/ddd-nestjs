@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { PaymentId } from '../../value-objects/payment-id.vo.js';
-import { PaymentStatus } from '../../value-objects/payment-status.vo.js';
 import { Money } from '../../../shared/domain/value-objects/money.vo.js';
+import { PaymentId } from '../value-objects/payment-id.vo.js';
+import { PaymentStatus } from '../value-objects/payment-status.vo.js';
 
 export interface PaymentProps {
   id: PaymentId;

@@ -7,6 +7,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { ProductModule } from './product/product.module.js';
 import { CustomerModule } from './customer/customer.module.js';
 import { OrderModule } from './order/order.module.js';
+import { PaymentModule } from './payment/payment.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,6 +24,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     CqrsModule.forRoot(),
     ProductModule,
     CustomerModule,
+    PaymentModule,
     OrderModule,
   ],
   controllers: [],
