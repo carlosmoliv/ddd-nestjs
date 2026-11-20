@@ -2,20 +2,20 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   DRIZZLE_CLIENT,
   DrizzleDB,
-} from '../../../../shared/infra/database/postgres/drizzle.provider.js';
-import { Order } from '../../order.js';
+} from '../../../shared/infra/database/postgres/drizzle.provider.js';
+import { OrderRepositoryPort } from '../../application/ports/order.repository.js';
+import { Order } from '../../domain/order.js';
 import {
   orderItems,
   orders,
-} from '../../../../shared/infra/database/postgres/schema/order.schema.js';
-import { OrderItem } from '../../order-item.js';
-import { Money } from '../../../../shared/domain/value-objects/money.vo.js';
-import { UniqueId } from '../../../../shared/domain/value-objects/unique-id.vo.js';
-import { ShippingAddress } from '../../../value-objects/shipping-address.vo.js';
-import { OrderId } from '../../../value-objects/order-id.vo.js';
-import { OrderStatus } from '../../../value-objects/order-status.vo.js';
+} from '../../../shared/infra/database/postgres/schema/order.schema.js';
 import { and, eq, notInArray } from 'drizzle-orm';
-import { OrderRepositoryPort } from '../../../application/ports/order.repository.js';
+import { OrderId } from '../../domain/value-objects/order-id.vo.js';
+import { OrderItem } from '../../domain/order-item.js';
+import { Money } from '../../../shared/domain/value-objects/money.vo.js';
+import { UniqueId } from '../../../shared/domain/value-objects/unique-id.vo.js';
+import { ShippingAddress } from '../../domain/value-objects/shipping-address.vo.js';
+import { OrderStatus } from '../../domain/value-objects/order-status.vo.js';
 
 @Injectable()
 export class DrizzleOrderRepository implements OrderRepositoryPort {

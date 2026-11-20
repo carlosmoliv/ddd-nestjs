@@ -1,10 +1,10 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { ListOrdersQuery } from '../list-orders.query.js';
-import { Order } from '../../domain/order.js';
+import { Order } from '../../../domain/order.js';
 import {
   ORDER_REPOSITORY,
   OrderRepositoryPort,
-} from '../../application/ports/order.repository.js';
+} from '../../ports/order.repository.js';
 import { Inject } from '@nestjs/common';
 
 @QueryHandler(ListOrdersQuery)

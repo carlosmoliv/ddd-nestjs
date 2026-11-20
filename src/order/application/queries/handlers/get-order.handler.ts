@@ -1,16 +1,16 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetOrderQuery } from '../get-order.query.js';
-import { Order } from '../../domain/order.js';
+import { Order } from '../../../domain/order.js';
 import {
   ORDER_REPOSITORY,
   OrderRepositoryPort,
-} from '../../application/ports/order.repository.js';
+} from '../../ports/order.repository.js';
 import { Inject } from '@nestjs/common';
 import {
   ApplicationException,
   ApplicationExceptionCode,
-} from '../../../shared/domain/exceptions/application.exception.js';
-import { OrderId } from '../../value-objects/order-id.vo.js';
+} from '../../../../shared/domain/exceptions/application.exception.js';
+import { OrderId } from '../../../domain/value-objects/order-id.vo.js';
 
 @QueryHandler(GetOrderQuery)
 export class GetOrderHandler implements IQueryHandler<GetOrderQuery, Order> {

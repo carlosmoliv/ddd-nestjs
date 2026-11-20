@@ -1,6 +1,6 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { PlaceOrderCommand } from './place-order.command.js';
-import { ShippingAddress } from '../../../value-objects/shipping-address.vo.js';
+import { ShippingAddress } from '../../../domain/value-objects/shipping-address.vo.js';
 import { Order } from '../../../domain/order.js';
 import { Inject } from '@nestjs/common';
 import { OrderItem } from '../../../domain/order-item.js';

@@ -5,7 +5,7 @@ import {
   ORDER_REPOSITORY,
   OrderRepositoryPort,
 } from '../../ports/order.repository.js';
-import { OrderId } from '../../../value-objects/order-id.vo.js';
+import { OrderId } from '../../../domain/value-objects/order-id.vo.js';
 import {
   ApplicationException,
   ApplicationExceptionCode,

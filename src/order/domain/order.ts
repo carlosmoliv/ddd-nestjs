@@ -1,9 +1,9 @@
 import { AggregateRoot } from '../../shared/domain/aggregate-root.js';
 import { DomainException } from '../../shared/domain/exceptions/domain.exception.js';
 import { Money } from '../../shared/domain/value-objects/money.vo.js';
-import { OrderId } from '../value-objects/order-id.vo.js';
-import { OrderStatus } from '../value-objects/order-status.vo.js';
-import { ShippingAddress } from '../value-objects/shipping-address.vo.js';
+import { OrderId } from './value-objects/order-id.vo.js';
+import { OrderStatus } from './value-objects/order-status.vo.js';
+import { ShippingAddress } from './value-objects/shipping-address.vo.js';
 import { OrderPlacedEvent } from './events/order-placed.event.js';
 import { OrderConfirmedEvent } from './events/order-confirmed.event.js';
 import { OrderItem } from './order-item.js';

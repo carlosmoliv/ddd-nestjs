@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CustomerPort } from '../../../application/ports/customer.port.js';
+import { CustomerPort } from '../../application/ports/customer.port.js';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
-} from '../../../../customer/application/ports/customer.repository.js';
-import { CustomerId } from '../../../../customer/domain/value-objects/customer-id.vo.js';
+} from '../../../customer/application/ports/customer.repository.js';
+import { CustomerId } from '../../../customer/domain/value-objects/customer-id.vo.js';
 
 @Injectable()
 export class CustomerAdapter implements CustomerPort {

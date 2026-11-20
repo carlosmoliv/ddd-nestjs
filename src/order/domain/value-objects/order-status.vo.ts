@@ -1,4 +1,4 @@
-import { DomainException } from '../../shared/domain/exceptions/domain.exception.js';
+import { DomainException } from '../../../shared/domain/exceptions/domain.exception.js';
 
 export type OrderStatusValue =
   'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';

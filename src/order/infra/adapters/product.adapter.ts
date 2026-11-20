@@ -2,9 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   PRODUCT_REPOSITORY,
   ProductRepository,
-} from '../../../../product/application/ports/product.repository.js';
-import { ProductPort } from '../../../application/ports/product.port.js';
-import { ProductId } from '../../../../product/domain/value-objects/product-id.vo.js';
+} from '../../../product/application/ports/product.repository.js';
+import { ProductPort } from '../../application/ports/product.port.js';
+import { ProductId } from '../../../product/domain/value-objects/product-id.vo.js';
 
 @Injectable()
 export class ProductAdapter implements ProductPort {
