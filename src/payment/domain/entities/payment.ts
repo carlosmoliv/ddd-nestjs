@@ -50,6 +50,10 @@ export class Payment extends AggregateRoot {
     return new Payment(props);
   }
 
+  isSucceeded(): boolean {
+    return this._status.isSucceeded();
+  }
+
   get id(): PaymentId {
     return this._id;
   }

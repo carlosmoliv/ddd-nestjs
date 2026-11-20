@@ -3,6 +3,7 @@ import { PAYMENT_REPOSITORY } from './application/ports/payment.repository.js';
 import { DrizzlePaymentRepository } from './infra/adapters/drizzle-payment.repository.js';
 import { StripePaymentAdapter } from './infra/adapters/stripe-payment.adapter.js';
 import { PAYMENT_GATEWAY } from './ports/payment-gateway.port.js';
+import { OrderPricingAdapter } from './infra/adapters/order-pricing.adapter.js';
 
 @Module({
   providers: [
@@ -13,6 +14,10 @@ import { PAYMENT_GATEWAY } from './ports/payment-gateway.port.js';
     {
       provide: PAYMENT_GATEWAY,
       useClass: StripePaymentAdapter,
+    },
+    {
+      provide: 'ORDER_PRICING',
+      useClass: OrderPricingAdapter,
     },
   ],
 })
